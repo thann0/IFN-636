@@ -1,12 +1,8 @@
 # PlanForge — Digital Product Marketplace
 
-A MERN-stack marketplace where project management template creators (sellers) can
-list their templates, and practitioners (customers) can browse and buy them.
-Built for IFN636 Assessment.
+Plan Forge is a digital product marketplace, built from MERN-stack web application where project management template creators (sellers) can list their templates and practitioners (customers) can browse and purchase them. This project is the submission for the Assessment 1 of IFN636  
 
-
-## What's covered (mapped to the backlog)
-
+## What’s covered (mapped to the backlog)
 - Epic 1 — Registration, login, JWT-based role access
 - Epic 2 — Sellers can create, read, update, and delete their product listings
 - Epic 3 — Customers can browse/filter the catalogue and view product details
@@ -40,21 +36,21 @@ npm start               # runs on http://localhost:3000
 
 1. Push the project to GitHub — `.gitignore` already excludes `node_modules`
    and `.env`, so no secrets get committed.
-2. On the EC2 instance, clone the repo and run `npm install` in both
+1. On the EC2 instance, clone the repo and run `npm install` in both
    `backend/` and `frontend/`.
-3. Create a `.env` file in `backend/` with the real Mongo URI and JWT secret
+1. Create a `.env` file in `backend/` with the real Mongo URI and JWT secret
    (this stays on the server, never in git).
-4. Build the frontend: `npm run build` inside `frontend/`.
-5. The backend is set up to serve the frontend's built files directly —
+1. Build the frontend: `npm run build` inside `frontend/`.
+2. The backend is set up to serve the frontend's built files directly —
    Express serves the `build/` folder as static content and falls back to
    `index.html` for any route it doesn't recognise, so React Router keeps
    working. That means everything runs as one process on one port, with no
    separate frontend server needed.
-6. Start it with PM2:
+1. Start it with PM2:
 ```bash
    pm2 start server.js --name digitalproduct
 ```
-7. Visit `http://<ec2-public-ip>:5000` — that's your live app.
+1. Visit `http://<ec2-public-ip>:5000` — that's your live app.
 
 ## Live deployment
 
@@ -63,11 +59,6 @@ npm start               # runs on http://localhost:3000
 
 ## Known limitations
 
-- The EC2 security group currently restricts access to a small set of
-  whitelisted IPs rather than being open to everyone — the AWS environment
-  used for this course auto-removes fully open (0.0.0.0/0) inbound rules,
-  so access has to be scoped to specific IPs instead. If you're trying to
-  reach the live URL and it's not loading, that's probably why — get in
-  touch and I can whitelist your IP.
+- The EC2 security group currently restricts access to a small set of whitelisted IPs rather than being open to everyone. The AWS environment for this course utilizes auto-removes fully open (0.0.0.0/0) inbound rules, so access has to be scoped to specific IPs instead. If the attempt to reach the live URL and it's not loading, that's probably the reason and I must be in touch to whitelist the IP.
 - No automated tests yet.
 - No password reset flow.
