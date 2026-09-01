@@ -12,4 +12,18 @@ function requireAuth(req, res, next) {
     req.user = decoded; // { id, role }
     next();
   } catch (err) {
+    return res.status(401).json({ message: 'Invalid or expired token' });
+  }
+}
 
+// Restricts a route to specific roles
+function requireRole(...roles) {
+  return (req, res, next) => {
+    if (!req.user || !roles.includes(req.user.role)) {
+      return res.status(403).json({ message: 'You do not have access to this resource' });
+    }
+    next();
+  };
+}
+
+module.exports = { requireAuth, requireRole };
