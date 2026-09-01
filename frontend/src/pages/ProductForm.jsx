@@ -1,8 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import api from '../api/axios';
+import '../styles/ProductForm.css';
 
-const emptyForm = { title: '', description: '', category: '', fileFormat: '', price: '', fileUrl: '', status: 'published' };
+const emptyForm = {
+  title: '',
+  description: '',
+  category: '',
+  fileFormat: '',
+  price: '',
+  fileUrl: '',
+  status: 'published',
+};
 
 export default function ProductForm() {
   const { id } = useParams(); // present only when editing
@@ -16,8 +25,13 @@ export default function ProductForm() {
       api.get(`/products/${id}`).then((res) => {
         const p = res.data.product;
         setForm({
-          title: p.title, description: p.description, category: p.category,
-          fileFormat: p.fileFormat, price: p.price, fileUrl: p.fileUrl, status: p.status,
+          title: p.title,
+          description: p.description,
+          category: p.category,
+          fileFormat: p.fileFormat,
+          price: p.price,
+          fileUrl: p.fileUrl,
+          status: p.status,
         });
       });
     }
@@ -57,33 +71,89 @@ export default function ProductForm() {
   };
 
   return (
-    <div className="page">
-      <h2>{isEdit ? 'Edit Product' : 'Add New Template'}</h2>
-      {error && <div className="message error">{error}</div>}
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <label>Template Title</label>
-        <input name="title" value={form.title} onChange={handleChange} />
+    <div className="product-form-page">
+      <section className="product-form-panel">
 
-        <label>Short Description</label>
-        <textarea name="description" value={form.description} onChange={handleChange} />
-
-        <label>Product Category</label>
-        <input name="category" value={form.category} onChange={handleChange} placeholder="e.g. Communication Mgmt" />
-
-        <label>File Format</label>
-        <input name="fileFormat" value={form.fileFormat} onChange={handleChange} placeholder="e.g. PDF, XLSX" />
-
-        <label>Price (AUD)</label>
-        <input type="number" name="price" value={form.price} onChange={handleChange} min="0" step="0.01" />
-
-        <label>Template File URL</label>
-        <input name="fileUrl" value={form.fileUrl} onChange={handleChange} placeholder="https://..." />
-
-        <div className="form-actions">
-          <button type="button" onClick={(e) => handleSubmit(e, 'draft')}>Save as Draft</button>
-          <button type="button" onClick={(e) => handleSubmit(e, 'published')} className="btn-primary">Publish</button>
+        <div className="product-form-header">
+          <Link to="/dashboard" className="product-form-back">
+            <i className="ri-arrow-left-line"></i>
+          </Link>
+          <div>
+            <h1>{isEdit ? 'Edit Product' : 'Add New Template'}</h1>
+            <p>{isEdit ? 'Update your listing details.' : 'Create a new product listing.'}</p>
+          </div>
         </div>
-      </form>
+
+        {error && <p className="product-form-error">{error}</p>}
+
+        <form onSubmit={(e) => handleSubmit(e)} className="product-form">
+          <div className="product-form-field">
+            <label>Template Title</label>
+            <input name="title" value={form.title} onChange={handleChange} />
+          </div>
+
+          <div className="product-form-field">
+            <label>Short Description</label>
+            <textarea name="description" value={form.description} onChange={handleChange} />
+          </div>
+
+          <div className="product-form-row">
+            <div className="product-form-field">
+              <label>Product Category</label>
+              <input
+                name="category"
+                value={form.category}
+                onChange={handleChange}
+                placeholder="e.g. Planning and Scheduling"
+              />
+            </div>
+
+            <div className="product-form-field">
+              <label>File Format</label>
+              <input
+                name="fileFormat"
+                value={form.fileFormat}
+                onChange={handleChange}
+                placeholder="e.g. PDF, XLSX"
+              />
+            </div>
+          </div>
+
+          <div className="product-form-row">
+            <div className="product-form-field">
+              <label>Price (AUD)</label>
+              <input
+                type="number"
+                name="price"
+                value={form.price}
+                onChange={handleChange}
+                min="0"
+                step="0.01"
+              />
+            </div>
+
+            <div className="product-form-field">
+              <label>Template File URL</label>
+              <input
+                name="fileUrl"
+                value={form.fileUrl}
+                onChange={handleChange}
+                placeholder="https://..."
+              />
+            </div>
+          </div>
+
+          <div className="product-form-actions">
+            <button type="button" className="product-form-draft" onClick={(e) => handleSubmit(e, 'draft')}>
+              Save as Draft
+            </button>
+            <button type="button" className="product-form-publish" onClick={(e) => handleSubmit(e, 'published')}>
+              Publish
+            </button>
+          </div>
+        </form>
+
+      </section>
     </div>
   );
 }
