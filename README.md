@@ -1,50 +1,73 @@
 # PlanForge — Digital Product Marketplace
 
-A MERN-stack marketplace connecting project management template creators (sellers)
-with practitioners (customers). Built for IFN636 Assessment.
+A MERN-stack marketplace where project management template creators (sellers) can
+list their templates, and practitioners (customers) can browse and buy them.
+Built for IFN636 Assessment.
 
-## Structure
-```
-planforge-marketplace/
-  backend/    Express + MongoDB API (JWT auth, products, purchases)
-  frontend/   React app (catalogue, seller dashboard, checkout, etc.)
-```
 
-## Covers (mapped to your backlog)
+## What's covered (mapped to the backlog)
+
 - Epic 1 — Registration, login, JWT-based role access
-- Epic 2 — Seller create/read/update/delete product listings
-- Epic 3 — Customer browse + filter catalogue, product details
+- Epic 2 — Sellers can create, read, update, and delete their product listings
+- Epic 3 — Customers can browse/filter the catalogue and view product details
 - Epic 4 — Simulated checkout, purchase history, file access via URL
 
-## Local setup
+## Running it locally
 
-### 1. Backend
+### Backend
+
 ```bash
 cd backend
 npm install
-cp .env.example .env   # then fill in MONGO_URI and JWT_SECRET
-npm run dev            # starts on http://localhost:5000
+cp .env.example .env   # fill in MONGO_URI and JWT_SECRET
+npm run dev            # runs on http://localhost:5000
 ```
 
-Get a free `MONGO_URI` from MongoDB Atlas: create a cluster, add a database user,
-allow network access from your IP (or 0.0.0.0/0 for EC2 testing), and copy the
-connection string into `.env`.
+You'll need a MongoDB Atlas connection string for `MONGO_URI`. Spin up a free
+cluster, add a database user, whitelist your IP under Network Access, and
+copy the connection string into `.env`.
 
-### 2. Frontend
+### Frontend
+
 ```bash
 cd frontend
 npm install
-cp .env.example .env   # points at your backend URL
-npm start               # starts on http://localhost:3000
+cp .env.example .env   # point this at your backend URL
+npm start               # runs on http://localhost:3000
 ```
 
 ## Deploying to EC2
-1. Push this whole folder to GitHub (see .gitignore — it already excludes
-   node_modules and .env).
-2. On EC2: clone the repo, `npm install` in both `backend/` and `frontend/`.
-3. In `backend/`, create `.env` with your real Mongo URI and JWT secret.
-4. In `frontend/`, set `REACT_APP_API_URL` to `http://<ec2-ip>:5000/api`, then
-   `npm run build` to produce a static `build/` folder.
-5. Run the backend with PM2 (`pm2 start server.js --name planforge-api`).
-6. Serve the frontend `build/` folder with Nginx (or `serve -s build`), and
-   have Nginx reverse-proxy `/api` requests to the backend on port 5000.
+
+1. Push the project to GitHub — `.gitignore` already excludes `node_modules`
+   and `.env`, so no secrets get committed.
+2. On the EC2 instance, clone the repo and run `npm install` in both
+   `backend/` and `frontend/`.
+3. Create a `.env` file in `backend/` with the real Mongo URI and JWT secret
+   (this stays on the server, never in git).
+4. Build the frontend: `npm run build` inside `frontend/`.
+5. The backend is set up to serve the frontend's built files directly —
+   Express serves the `build/` folder as static content and falls back to
+   `index.html` for any route it doesn't recognise, so React Router keeps
+   working. That means everything runs as one process on one port, with no
+   separate frontend server needed.
+6. Start it with PM2:
+```bash
+   pm2 start server.js --name digitalproduct
+```
+7. Visit `http://<ec2-public-ip>:5000` — that's your live app.
+
+## Live deployment
+
+- **URL:** http://54.253.103.47:5000
+- **EC2 instance:** i-0ba7d68115caf1294 (ap-southeast-2, Sydney)
+
+## Known limitations
+
+- The EC2 security group currently restricts access to a small set of
+  whitelisted IPs rather than being open to everyone — the AWS environment
+  used for this course auto-removes fully open (0.0.0.0/0) inbound rules,
+  so access has to be scoped to specific IPs instead. If you're trying to
+  reach the live URL and it's not loading, that's probably why — get in
+  touch and I can whitelist your IP.
+- No automated tests yet.
+- No password reset flow.
