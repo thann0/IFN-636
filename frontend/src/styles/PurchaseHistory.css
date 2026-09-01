@@ -1,0 +1,424 @@
+/* ========================================
+   PURCHASE HISTORY PAGE
+======================================== */
+
+.purchase-history-page {
+  width: 100%;
+  min-height: calc(100vh - 96px);
+
+  padding: 52px 36px 70px;
+
+  background: #f8f8f8;
+
+  color: #080753;
+
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+
+/* ========================================
+   MAIN YELLOW PANEL
+======================================== */
+
+.purchase-history-panel {
+  width: 100%;
+  max-width: 1460px;
+
+  min-height: 760px;
+
+  margin: 0 auto;
+
+  padding: 55px 48px 70px;
+
+  background: #fec663;
+
+  border-radius: 30px;
+}
+
+
+/* ========================================
+   PAGE HEADER
+======================================== */
+
+.history-header {
+  margin-bottom: 28px;
+}
+
+.history-header h1 {
+  margin: 0 0 15px;
+
+  color: #08304c;
+
+  font-size: 52px;
+  font-weight: 800;
+
+  line-height: 1;
+}
+
+.history-header p {
+  margin: 0;
+
+  color: #08304c;
+
+  font-size: 30px;
+  font-weight: 400;
+}
+
+
+/* ========================================
+   TABLE WRAPPER
+======================================== */
+
+.history-table-wrapper {
+  width: 100%;
+
+  overflow-x: auto;
+
+  background: #ffffff;
+}
+
+
+/* ========================================
+   TABLE
+======================================== */
+
+.history-table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  background: #ffffff;
+
+  color: #080753;
+}
+
+.history-table thead {
+  background: #ffffff;
+}
+
+.history-table th {
+  padding: 18px 28px;
+
+  border-bottom: 1px solid #d5d5d5;
+
+  text-align: left;
+
+  color: #080753;
+
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.history-table td {
+  padding: 18px 28px;
+
+  border-bottom: none;
+
+  color: #080753;
+
+  font-size: 19px;
+  font-weight: 400;
+
+  vertical-align: middle;
+}
+
+.history-table th:nth-child(1),
+.history-table td:nth-child(1) {
+  width: 27%;
+}
+
+.history-table th:nth-child(2),
+.history-table td:nth-child(2) {
+  width: 29%;
+}
+
+.history-table th:nth-child(3),
+.history-table td:nth-child(3) {
+  width: 17%;
+}
+
+.history-table th:nth-child(4),
+.history-table td:nth-child(4) {
+  width: 17%;
+}
+
+.history-table th:nth-child(5),
+.history-table td:nth-child(5) {
+  width: 10%;
+}
+
+
+/* ========================================
+   LINKS
+======================================== */
+
+.history-table a {
+  color: #080753;
+
+  font-weight: 500;
+
+  text-decoration: underline;
+
+  text-underline-offset: 3px;
+}
+
+.history-table a:hover {
+  color: #274578;
+}
+
+
+/* ========================================
+   STATUS
+======================================== */
+
+.history-status,
+.wishlist-status {
+  color: #080753;
+}
+
+
+/* ========================================
+   EMPTY TABLE
+======================================== */
+
+.history-table .history-empty-row {
+  padding: 35px;
+
+  text-align: center;
+
+  color: #687087;
+
+  font-size: 16px;
+}
+
+
+/* ========================================
+   WISHLIST SECTION
+======================================== */
+
+.wishlist-section {
+  margin-top: 43px;
+}
+
+.wishlist-heading {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 22px;
+}
+
+.wishlist-heading h2 {
+  margin: 0;
+
+  color: #08304c;
+
+  font-size: 31px;
+  font-weight: 400;
+}
+
+.wishlist-heading i {
+  color: #08304c;
+
+  font-size: 30px;
+}
+
+
+/* ========================================
+   MESSAGE
+======================================== */
+
+.history-message {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  margin-bottom: 20px;
+
+  padding: 12px 16px;
+
+  border-radius: 8px;
+
+  font-size: 14px;
+}
+
+.history-error {
+  background: #ffe2e2;
+
+  color: #9d2020;
+}
+
+
+/* ========================================
+   LOADING
+======================================== */
+
+.history-state {
+  width: 100%;
+
+  min-height: 70vh;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  background: #f8f8f8;
+
+  color: #08304c;
+
+  font-size: 18px;
+}
+
+.history-state i {
+  font-size: 40px;
+}
+
+.history-spinner {
+  animation: history-spin 1s linear infinite;
+}
+
+@keyframes history-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* ========================================
+   LARGE LAPTOP
+======================================== */
+
+@media (max-width: 1200px) {
+
+  .purchase-history-panel {
+    padding: 48px 40px 60px;
+  }
+
+  .history-header h1 {
+    font-size: 45px;
+  }
+
+  .history-header p {
+    font-size: 26px;
+  }
+
+  .history-table th {
+    padding: 16px 20px;
+
+    font-size: 17px;
+  }
+
+  .history-table td {
+    padding: 16px 20px;
+
+    font-size: 16px;
+  }
+
+  .wishlist-heading h2 {
+    font-size: 27px;
+  }
+}
+
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 850px) {
+
+  .purchase-history-page {
+    padding: 35px 24px 50px;
+  }
+
+  .purchase-history-panel {
+    padding: 40px 28px 50px;
+
+    border-radius: 24px;
+  }
+
+  .history-header h1 {
+    font-size: 39px;
+  }
+
+  .history-header p {
+    font-size: 23px;
+  }
+
+  .history-table {
+    min-width: 850px;
+  }
+
+  .wishlist-section {
+    margin-top: 35px;
+  }
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 550px) {
+
+  .purchase-history-page {
+    padding: 20px 14px 40px;
+  }
+
+  .purchase-history-panel {
+    padding: 32px 18px 40px;
+
+    border-radius: 20px;
+  }
+
+  .history-header h1 {
+    font-size: 34px;
+  }
+
+  .history-header p {
+    font-size: 20px;
+  }
+
+  .history-table th {
+    padding: 14px 16px;
+
+    font-size: 15px;
+  }
+
+  .history-table td {
+    padding: 14px 16px;
+
+    font-size: 14px;
+  }
+
+  .wishlist-heading h2 {
+    font-size: 23px;
+  }
+
+  .wishlist-heading i {
+    font-size: 25px;
+  }
+}
+.history-file-link {
+  background: none;
+  border: none;
+  color: #060644;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  font-size: inherit;
+}
+.history-error {
+  color: #a30000;
+  margin-bottom: 12px;
+}

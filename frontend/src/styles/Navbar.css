@@ -1,0 +1,259 @@
+/* ========================================
+   NAVBAR
+======================================== */
+
+.navbar {
+  width: 100%;
+  height: 96px;
+
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+
+  padding: 0 48px;
+
+  background: #080753;
+
+  color: #ffffff;
+}
+
+
+/* ========================================
+   BRAND
+======================================== */
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  width: fit-content;
+
+  color: #fec663;
+
+  text-decoration: none;
+}
+
+.navbar-logo {
+  width: 52px;
+  height: 52px;
+
+  object-fit: contain;
+
+  flex-shrink: 0;
+}
+
+.navbar-brand span {
+  font-size: 31px;
+  font-weight: 800;
+
+  line-height: 1;
+
+  color: #fec663;
+}
+
+
+/* ========================================
+   CENTER LINKS
+======================================== */
+
+.navbar-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 90px;
+}
+
+.navbar-center a {
+  color: #ffffff;
+
+  text-decoration: none;
+
+  font-size: 18px;
+  font-weight: 700;
+
+  white-space: nowrap;
+
+  transition:
+    color 0.15s ease,
+    opacity 0.15s ease;
+}
+
+.navbar-center a:hover {
+  color: #fec663;
+}
+
+
+/* ========================================
+   RIGHT SIDE
+======================================== */
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 18px;
+}
+
+.navbar-login-button {
+  min-width: 200px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 16px 34px;
+
+  border: none;
+  border-radius: 36px;
+
+  background: #fec663;
+
+  color: #080753;
+
+  text-decoration: none;
+
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease,
+    transform 0.15s ease;
+}
+
+.navbar-login-button:hover {
+  background: #ffd27a;
+
+  transform: translateY(-1px);
+}
+
+.navbar-login-button:active {
+  transform: translateY(0);
+}
+
+
+/* ========================================
+   LOGGED-IN STATE
+======================================== */
+
+.navbar-user-name {
+  color: #ffffff;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+.navbar-secondary-link {
+  color: #ffffff;
+
+  text-decoration: none;
+
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.navbar-secondary-link:hover {
+  color: #fec663;
+}
+
+.navbar-logout-button {
+  min-width: 130px;
+
+  padding: 12px 24px;
+}
+
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 1200px) {
+  .navbar {
+    padding: 0 32px;
+  }
+
+  .navbar-center {
+    gap: 50px;
+  }
+
+  .navbar-login-button {
+    min-width: 160px;
+  }
+}
+
+@media (max-width: 950px) {
+  .navbar {
+    grid-template-columns: auto 1fr auto;
+
+    height: 82px;
+
+    padding: 0 24px;
+  }
+
+  .navbar-logo {
+    width: 44px;
+    height: 44px;
+  }
+
+  .navbar-brand span {
+    font-size: 26px;
+  }
+
+  .navbar-center {
+    gap: 28px;
+  }
+
+  .navbar-center a {
+    font-size: 15px;
+  }
+
+  .navbar-login-button {
+    min-width: 120px;
+
+    padding: 12px 22px;
+
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 720px) {
+  .navbar {
+    height: auto;
+
+    grid-template-columns: 1fr auto;
+
+    padding: 16px 20px;
+  }
+
+  .navbar-center {
+    display: none;
+  }
+
+  .navbar-logo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .navbar-brand span {
+    font-size: 24px;
+  }
+
+  .navbar-login-button {
+    min-width: 105px;
+
+    padding: 10px 18px;
+  }
+
+  .navbar-user-name,
+  .navbar-secondary-link {
+    display: none;
+  }
+}
